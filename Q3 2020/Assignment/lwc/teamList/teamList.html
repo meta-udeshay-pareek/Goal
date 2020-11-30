@@ -1,0 +1,24 @@
+<template>
+	<lightning-combobox class="slds-align-middle"
+		variant="label-hidden"
+		label="Team"
+		placeholder="All Teams"
+		name="progress"
+		options={teamOptions}
+		onchange={handleTeamOptionsChange}
+		value={value}
+	></lightning-combobox>
+
+	<template if:true={teamMembers}>
+		<template for:each={teamMembers} for:item="member">
+			<div style = "border-style: solid; border-width: thin;" class="slds-p-around_small" key={member.Id}>
+				<lightning-record-form
+					record-id={member.Id}
+					object-api-name="Team_Member__c"
+					fields={FIELDS}
+					mode="readonly">
+				</lightning-record-form>
+			</div>
+		</template>
+	</template>
+</template>
